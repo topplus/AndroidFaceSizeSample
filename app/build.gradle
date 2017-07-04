@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '24.0.2'
+
+    defaultConfig {
+        applicationId "example.com.androidfacesize"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        debug {
+            storeFile file('../topplus_sample.jks')
+            storePassword '123456'
+            keyAlias 'topplus_sample'
+            keyPassword '123456'
+        }
+        release {
+            storeFile file('../topplus_sample.jks')
+            storePassword '123456'
+            keyAlias 'topplus_sample'
+            keyPassword '123456'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+        release {
+            zipAlignEnabled true
+            debuggable false
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        //可得
+        KEEDE {}
+        //玩美彩妆
+        TAPOLE {}
+        Test {}
+        Trial {}
+    }
+
+    applicationVariants.all {
+        variant ->
+            variant.outputs.each {
+                output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def flavorName = variant.productFlavors.get(0).name;
+                        def developV = variant.buildType.name;
+                        def fileName = "Android_Facesize_${flavorName}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+            }
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile project(':commonutils-release')
+    compile project(':facemeasure-release')
+}

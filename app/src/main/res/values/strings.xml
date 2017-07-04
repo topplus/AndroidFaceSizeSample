@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidFaceSize</string>
+    <string name="page4_pd_key">瞳&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;距:</string>
+    <string name="page4_faceD_key">脸&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;宽:</string>
+    <string name="page4_noseD_key">鼻&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;宽:</string>
+    <string name="page4_innerEyeD_key">内眼角距:</string>
+    <string name="page4_outerEyeD_key">外眼角距:</string>
+</resources>
